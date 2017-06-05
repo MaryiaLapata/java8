@@ -17,6 +17,7 @@ public class Ex1_Person {
 		•	Then sort them using these comparators;
 		•	Use forEach method for printing information about all the persons. Use the method reference;
 		*/
+		
 		List<Person> personList = Arrays.asList(
 				new Person("Galya", 25), 
 				new Person("Vova", 35), 
@@ -28,6 +29,7 @@ public class Ex1_Person {
 		Comparator<Person> ageComparator = (p1, p2) -> p1.getAge() - p2.getAge();
 		
 		personList.sort(Comparator.comparing(Person::getName).thenComparing(Person::getAge));
+		personList.sort(nameComparator.thenComparing(ageComparator));
 		personList.forEach(System.out::println);
 		/*personList.stream()
 			.sorted()

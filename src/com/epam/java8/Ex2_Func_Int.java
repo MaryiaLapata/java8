@@ -25,7 +25,8 @@ public class Ex2_Func_Int {
 		Consumer<Person> consumer = p -> System.out.println(p);
 		consumer.accept(person);
 		
-		Function<String, Person> personConstruct = name -> new Person(name);
+//		Function<String, Person> personConstruct = name -> new Person(name);
+		Function<String, Person> personConstruct = Person::new;
 		System.out.println(personConstruct.apply("Kolya"));
 		
 		BiFunction<String, Integer, Person> personConstruct2 = Person::new;

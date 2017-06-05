@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.*;
 
 import java.util.ArrayList;
 
-public class Ex_4_Books {
+public class Ex4_Books {
 
 	public static void main(String[] args) {
 		Book book1 = new Book("title1", 250);
@@ -54,12 +54,10 @@ public class Ex_4_Books {
 		System.out.println(books.stream().anyMatch(b -> b.getNumberOfPages() > 200));
 		
 		Optional<Book> result = books.stream()
-			.parallel()
 			.collect(maxBy(comparing(Book::getNumberOfPages)));		
 		System.out.println(result.get());
 		
 		Optional<Book> result1 = books.stream()
-				.parallel()
 				.collect(minBy(comparing(Book::getNumberOfPages)));		
 		System.out.println(result1.get());
 		
@@ -71,16 +69,24 @@ public class Ex_4_Books {
 			.forEach(System.out::println);
 		
 		System.out.println("get list of all titles");
-		books.stream()
+		System.out.println(books.stream()
 			.map(Book::getTitle)
-			.forEach(System.out::println);
+			.collect(toList()));
 		
 		
 		System.out.println("get distinct list of all authors");
-		books.stream()
+		/*books.stream()
+		//.parallel()
 			.map(Book::getAuthors)
 			.flatMap(a -> a.stream())
 			//.peek(System.out::println)
+			.map(a -> a.getName())
+			.distinct()
+			.forEach(System.out::println);*/
+		
+		books.stream()
+		.parallel()
+			.flatMap(b -> b.getAuthors().stream())
 			.map(a -> a.getName())
 			.distinct()
 			.forEach(System.out::println);

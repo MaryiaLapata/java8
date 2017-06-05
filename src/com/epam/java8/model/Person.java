@@ -13,8 +13,8 @@ public class Person {
 		this.age = age;
 	}
 
-	public Person(String name2) {
-		this.name = name2;
+	public Person(String name) {
+		this.name = name;
 	}
 
 	public String getName() {
